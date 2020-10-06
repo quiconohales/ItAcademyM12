@@ -44,14 +44,14 @@ public class EmployeeController {
 	// Create /grabar
 	@PostMapping("/post")
 	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
-		return new ResponseEntity<>(employeeServiceImpl.saveEmployee(employee), HttpStatus.OK);
+		return new ResponseEntity<>(employeeServiceImpl.saveEmployee(employee), HttpStatus.CREATED);
 				
 	}
 
 	// Read /listar
 	@GetMapping("/get")
 	public ResponseEntity<List<Employee>> listemployees() {
-		return ResponseEntity.ok(employeeServiceImpl.listEmployees());
+		return new ResponseEntity<>(employeeServiceImpl.listEmployees(),HttpStatus.OK);
 
 	}
 
@@ -100,7 +100,7 @@ public class EmployeeController {
 		employee_select.setSalary(employee.getSalary());
 
 		employee_update = employeeServiceImpl.updateEmployee(employee_select);
-		new ResponseEntity<>(employee_update,HttpStatus.OK);
+		
 		return new ResponseEntity<>(employee_update,HttpStatus.OK);
 	}
 
